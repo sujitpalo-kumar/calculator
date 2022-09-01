@@ -1,96 +1,55 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./App.css";
+import React ,{useState} from "react";
+import './App.css'
 
-function App() {
-  const [result, setResult] = useState("");
-  const inputRef = useRef(null);
-
-  useEffect(() => inputRef.current.focus());
-
-  function handleClick(e) {
-    setResult(result.concat(e.target.name));
+const App=()=>{
+  const [result,setResult]=useState("");
+  const clickhandler=(e)=>{
+    setResult(result.concat(e.target.value))
   }
-
-  function backspace() {
-    setResult(result.slice(0, -1));
-  }
-
-  function clear() {
+  const clear=()=>{
     setResult("");
   }
+  const res=()=>{
+    setResult(eval(result).toString())
+  }
+  
 
-  function calculate() {
-    try {
-      setResult(eval(result).toString());
-    } catch (error) {
-      setResult("Error");
-    }
+  const back=()=>{
+    setResult(result.slice(0, -1));
+
   }
 
-  return (
-    <div className="calc-app">
-      <from>
-        <input type="text" value={result} ref={inputRef} />
-      </from>
 
-      <div className="keypad">
-        <button id="clear" onClick={clear}>
-          Clear
-        </button>
-        <button id="backspace" onClick={backspace}>
-          C
-        </button>
-        <button name="+" onClick={handleClick}>
-          +
-        </button>
-        <button name="7" onClick={handleClick}>
-          7
-        </button>
-        <button name="8" onClick={handleClick}>
-          8
-        </button>
-        <button name="9" onClick={handleClick}>
-          9
-        </button>
-        <button name="-" onClick={handleClick}>
-          -
-        </button>
-        <button name="4" onClick={handleClick}>
-          4
-        </button>
-        <button name="5" onClick={handleClick}>
-          5
-        </button>
-        <button name="6" onClick={handleClick}>
-          6
-        </button>
-        <button name="*" onClick={handleClick}>
-          &times;
-        </button>
-        <button name="1" onClick={handleClick}>
-          1
-        </button>
-        <button name="2" onClick={handleClick}>
-          2
-        </button>
-        <button name="3" onClick={handleClick}>
-          3
-        </button>
-        <button name="/" onClick={handleClick}>
-          /
-        </button>
-        <button name="0" onClick={handleClick}>
-          0
-        </button>
-        <button name="." onClick={handleClick}>
-          .
-        </button>
-        <button id="result" onClick={calculate}>
-          Result
-        </button>
-      </div>
+
+  return(
+    <div className="calc">
+      <input type="text" placeholder="0" id="answer" value={result}/>
+      <input type="button" value="9" className="button" onClick={clickhandler}/>
+      <input type="button" value="8"className="button" onClick={clickhandler}/>
+      <input type="button" value="7"className="button" onClick={clickhandler}/>
+      <input type="button" value="6"className="button" onClick={clickhandler}/>
+      <input type="button" value="5"className="button" onClick={clickhandler}/>
+      <input type="button" value="4"className="button" onClick={clickhandler}/>
+      <input type="button" value="3"className="button" onClick={clickhandler}/>
+      <input type="button" value="2"className="button" onClick={clickhandler}/>
+      <input type="button" value="1"className="button" onClick={clickhandler}/>
+      <input type="button" value="0"className="button" onClick={clickhandler}/>
+
+      <input type="button" value="."className="button" onClick={clickhandler}/>
+      <input type="button" value="+"className="button" onClick={clickhandler}/>
+      <input type="button" value="-"className="button" onClick={clickhandler}/>
+      <input type="button" value="*"className="button" onClick={clickhandler}/>
+      <input type="button" value="/"className="button" onClick={clickhandler}/>
+      <input type="button" value="%"className="button" onClick={clickhandler}/>
+      <input type="button" value="clear"className="button button1" onClick={clear}/>
+      <input type="button" value="="className="button button1" onClick={res}/>
+      <input type="button" value="BACK"className="button button1" onClick={back}/>
+      
+
+
+
     </div>
-  );
+  )
 }
 
 export default App;
